@@ -12,20 +12,21 @@ public class CardDeliveryFormTest {
 
     @Test
     public void shouldSendOrderForm() {
-        RegistrationInfo startInfo = RegistrationInfoGenerator.generateRegistrationInfo();
+        RegistrationInfo userInfo = RegistrationInfoGenerator.generateRegistrationInfo();
+        String firstDate = RegistrationInfoGenerator.generateDate();
         String newDate = RegistrationInfoGenerator.generateDate();
 
         open("http://localhost:9999/");
         SelenideElement form = $("form");
-        form.$("[data-test-id='city'] input").setValue(startInfo.getCity());
+        form.$("[data-test-id='city'] input").setValue(userInfo.getCity());
         form.$("[data-test-id='date'] input").doubleClick();
         form.$("[data-test-id='date'] input").sendKeys(Keys.DELETE);
-        form.$("[data-test-id='date'] input").setValue(startInfo.getDate());
-        form.$("[data-test-id='name'] input").setValue(startInfo.getName());
-        form.$("[data-test-id='phone'] input").setValue(startInfo.getPhone());
+        form.$("[data-test-id='date'] input").setValue(firstDate);
+        form.$("[data-test-id='name'] input").setValue(userInfo.getName());
+        form.$("[data-test-id='phone'] input").setValue(userInfo.getPhone());
         form.$("[data-test-id='agreement']").click();
         form.$(".button").click();
-        $("[data-test-id='success-notification']").shouldHave(Condition.text("Встреча успешно запланирована на " + startInfo.getDate()));
+        $("[data-test-id='success-notification']").shouldHave(Condition.text("Встреча успешно запланирована на " + firstDate));
         $("[data-test-id='success-notification'] .icon-button").click();
 
         form.$("[data-test-id='date'] input").doubleClick();
