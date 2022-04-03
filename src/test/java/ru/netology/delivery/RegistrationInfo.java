@@ -1,11 +1,10 @@
 package ru.netology.delivery;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 public class RegistrationInfo {
     private String city;
-    private String date;
     private String name;
     private String phone;
 }
