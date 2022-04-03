@@ -37,11 +37,6 @@ public class RegistrationInfoGenerator {
     }
 
     public static RegistrationInfo generateRegistrationInfo() {
-        RegistrationInfo result = new RegistrationInfo();
-        result.setCity(generateCity());
-        result.setDate(generateDate());
-        result.setName(generateName());
-        result.setPhone(generatePhone());
-        return result;
+        return new RegistrationInfo(generateCity(), generateName(), generatePhone());
     }
 }
